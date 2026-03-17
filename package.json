@@ -7,7 +7,14 @@
     "dev:clean": "node -e \"const fs=require('fs'); const path=require('path'); const p=path.join(process.cwd(),'.next'); try{ fs.rmSync(p,{recursive:true,force:true}); }catch(e){}\" && next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "check-types": "tsc --noEmit",
+    "prepare": "husky"
+  },
+  "lint-staged": {
+    "*.{js,ts,jsx,tsx}": [
+      "eslint --fix"
+    ]
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.3.5",
