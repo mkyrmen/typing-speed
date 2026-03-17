@@ -1,0 +1,38 @@
+[
+    {
+        "id": "story-1",
+        "title": "The Forest Trail",
+        "difficulty": "Easy",
+        "text": "The morning light filtered through the tall oak trees, casting golden patterns on the mossy ground below. Birds sang quietly as a deer stepped gently through the undergrowth, pausing now and then to listen for any danger lurking nearby."
+    },
+    {
+        "id": "story-2",
+        "title": "City at Night",
+        "difficulty": "Easy",
+        "text": "Neon signs reflected off the wet pavement as the city hummed with energy after dark. Taxis splashed through puddles and street vendors shouted offers of hot food to the crowds of people hurrying home through the cold night air."
+    },
+    {
+        "id": "story-3",
+        "title": "The Deep Ocean",
+        "difficulty": "Medium",
+        "text": "Beneath the crushing pressure of the deep sea, bizarre creatures glow with bioluminescent light. Scientists aboard research vessels deploy remote-controlled submarines to photograph these extraordinary organisms that have evolved in absolute darkness for millennia."
+    },
+    {
+        "id": "story-4",
+        "title": "Quantum Mechanics",
+        "difficulty": "Hard",
+        "text": "Quantum superposition allows particles to exist in multiple states simultaneously until observed, collapsing the wave function. This counterintuitive phenomenon underlies technologies such as quantum computing, cryptography, and high-precision measurement instruments."
+    },
+    {
+        "id": "story-5",
+        "title": "Mountain Summit",
+        "difficulty": "Medium",
+        "text": "After six grueling hours of climbing, the team finally reached the snow-capped summit. The wind howled fiercely as they planted their flag, gazing across an endless panorama of jagged peaks and valley glaciers shimmering far below in the late afternoon sun."
+    },
+    {
+        "id": "story-6",
+        "title": "Chicanery",
+        "difficulty": "Medium",
+        "text": "Before the panel, Mr. McGill insists that his mental illness is irrelevant to the matter at hand. Suddenly his composure cracks as he declares that he is not crazy and that he knows the numbers were swapped. He remembers clearly that it was 1216—one after the Magna Carta—and argues that he could never make such a mistake. Frustrated that he cannot prove it, he accuses Jimmy of covering his tracks and manipulating others, even convincing a copy shop worker to lie. His anger grows as he lists what he believes are Jimmy’s past schemes, from the dramatic billboard stunt to other reckless acts. He recalls how he once tried to help Jimmy by bringing him into his firm, only to regret it deeply. In his emotional outburst he insists that Jimmy has never changed since childhood, always chasing easy money and deception. Overwhelmed, he finally stops himself, apologizes for losing his train of thought, and ends his statement with nothing further to add."
+    }
+]
