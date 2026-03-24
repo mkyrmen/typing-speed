@@ -1,9 +1,11 @@
 import { create } from "zustand";
 import { getSupabase } from "@/lib/supabase";
+import { getRandomStoryFromGenre, GENRES } from "@/constants/stories";
 
 export type Difficulty = "Easy" | "Medium" | "Hard";
 export type GameStatus = "idle" | "typing" | "finished";
 export type AppView = "menu" | "arena";
+export type GenreName = "classic" | "tech" | "scifi";
 
 interface TypingState {
     // UI
@@ -22,9 +24,11 @@ interface TypingState {
     // State
     timeLeft: number;
     timerDuration: number;
+    genre: GenreName | null;
 
     // Actions
     setStory: (text: string, title?: string) => void;
+    setGenre: (genreName: GenreName) => void;
     setView: (view: AppView) => void;
     resetToMenu: () => void;
     saveScore: (username: string) => Promise<void>;
@@ -62,6 +66,7 @@ export const useTypingStore = create<TypingState>()((set, get) => ({
     accuracy: 100,
     timeLeft: 30,
     timerDuration: 30,
+    genre: GENRES[0].name as GenreName,
 
     setStory: (text: string, title?: string) => {
         const { timerDuration } = get();
@@ -70,6 +75,25 @@ export const useTypingStore = create<TypingState>()((set, get) => ({
             targetText: text.split(""),
             userInput: [],
             currentStoryTitle: title ?? null,
+            status: "idle",
+            isFinished: false,
+            startTime: null,
+            wpm: 0,
+            accuracy: 100,
+            timeLeft: timerDuration,
+        });
+    },
+
+    setGenre: (genreName: GenreName) => {
+        const { timerDuration } = get();
+        const story = getRandomStoryFromGenre(genreName);
+        if (!story) return;
+        set({
+            genre: genreName,
+            view: "arena",
+            targetText: story.text.split(""),
+            userInput: [],
+            currentStoryTitle: story.title,
             status: "idle",
             isFinished: false,
             startTime: null,
