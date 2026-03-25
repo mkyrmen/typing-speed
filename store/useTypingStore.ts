@@ -1,11 +1,10 @@
 import { create } from "zustand";
 import { getSupabase } from "@/lib/supabase";
-import { getRandomStoryFromGenre, GENRES } from "@/constants/stories";
+import { getRandomStoryFromGenre, GENRES, GenreName } from "@/constants/stories";
 
 export type Difficulty = "Easy" | "Medium" | "Hard";
 export type GameStatus = "idle" | "typing" | "finished";
 export type AppView = "menu" | "arena";
-export type GenreName = "classic" | "tech" | "scifi";
 
 interface TypingState {
     // UI

@@ -11,10 +11,6 @@ export default function Home() {
   const view = useTypingStore((s) => s.view);
   const setStory = useTypingStore((s) => s.setStory);
 
-  const handleSelectStory = (text: string, title: string) => {
-    setStory(text, title);
-  };
-
   return (
     <main className="flex min-h-screen flex-col items-center justify-center p-8 bg-[var(--background)] text-[color:var(--foreground)] selection:bg-[color:var(--caret)]/25">
       <AudioPreload />
@@ -29,7 +25,7 @@ export default function Home() {
       </h1>
       
       {view === "menu" ? (
-        <StorySelector onSelect={handleSelectStory} />
+        <StorySelector onSelect={(text, title) => setStory(text, title)} />
       ) : (
         <TypingArena />
       )}

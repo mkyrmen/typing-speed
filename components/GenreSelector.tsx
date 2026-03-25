@@ -1,8 +1,7 @@
 "use client";
 
 import { useTypingStore } from "@/store/useTypingStore";
-import { GENRES } from "@/constants/stories";
-import type { GenreName } from "@/store/useTypingStore";
+import { GENRES, GenreName } from "@/constants/stories";
 
 export default function GenreSelector() {
   const genre = useTypingStore((s) => s.genre);

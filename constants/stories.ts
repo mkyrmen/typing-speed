@@ -4,8 +4,10 @@ export interface Story {
   text: string;
 }
 
+export type GenreName = "classic" | "code" | "scifi";
+
 export interface Genre {
-  name: string;
+  name: GenreName;
   label: string;
   stories: Story[];
 }
@@ -18,7 +20,7 @@ function sanitize(text: string): string {
 export const GENRES: Genre[] = [
   {
     name: "classic",
-    label: "Classic Lit",
+    label: "Classic",
     stories: [
       {
         id: "cl-1",
@@ -51,35 +53,35 @@ export const GENRES: Genre[] = [
     ],
   },
   {
-    name: "tech",
-    label: "Tech History",
+    name: "code",
+    label: "Code",
     stories: [
       {
-        id: "th-1",
-        title: "Birth of the Internet",
+        id: "cd-1",
+        title: "Async Data Fetcher",
         text: sanitize(
-          `On October 29, 1969, the first message was sent over ARPANET, the precursor to the modern Internet. A student at UCLA typed "login" to connect to a machine at Stanford. The system crashed after just two letters: "lo." Yet that faltering transmission marked the beginning of a revolution that would reshape every facet of human civilisation within decades.`
+          `async function fetchUserData(userId: string): Promise<User> { const response = await fetch(\`/api/users/\${userId}\`); if (!response.ok) { throw new Error(\`Failed to fetch user: \${response.status}\`); } const data = await response.json(); return { id: data.id, name: data.name, email: data.email, createdAt: new Date(data.created_at) }; }`
         ),
       },
       {
-        id: "th-2",
-        title: "The First Microprocessor",
+        id: "cd-2",
+        title: "Array Pipeline",
         text: sanitize(
-          `In 1971, Intel released the 4004, a 4-bit central processing unit contained entirely on a single chip. Designed by Federico Faggin, Marcian Hoff, and Stanley Mazor, it packed 2,300 transistors into an area the size of a fingernail. This tiny sliver of silicon ignited the personal computer revolution, proving that an entire CPU could be manufactured cheaply and at scale.`
+          `const result = orders.filter((order) => order.status === "completed").map((order) => ({ id: order.id, total: order.items.reduce((sum, item) => sum + item.price * item.qty, 0), customer: order.customer.name, })).sort((a, b) => b.total - a.total).slice(0, 10);`
         ),
       },
       {
-        id: "th-3",
-        title: "The World Wide Web",
+        id: "cd-3",
+        title: "Event Debouncer",
         text: sanitize(
-          `In 1989, Tim Berners-Lee submitted a proposal to CERN titled "Information Management: A Proposal." His manager famously wrote "vague but exciting" in the margin. Two years later, the world's first website went live at the CERN data centre in Switzerland. It explained what the Web was and how to use it, quietly launching an era of interconnected knowledge that nobody could have anticipated.`
+          `function debounce<T extends (...args: unknown[]) => void>(fn: T, delay: number): (...args: Parameters<T>) => void { let timer: ReturnType<typeof setTimeout> | null = null; return (...args: Parameters<T>) => { if (timer !== null) { clearTimeout(timer); } timer = setTimeout(() => { fn(...args); timer = null; }, delay); }; }`
         ),
       },
       {
-        id: "th-4",
-        title: "The Unix Philosophy",
+        id: "cd-4",
+        title: "React Custom Hook",
         text: sanitize(
-          `Ken Thompson and Dennis Ritchie built Unix at Bell Labs in 1969 with a radical philosophy: write programs that do one thing well, that work together, and that handle text streams, the universal interface. That elegant discipline quietly shaped every operating system that followed. Linux, macOS, and Android all trace their lineage back to those spare, powerful ideas born in a Murray Hill laboratory.`
+          `function useLocalStorage<T>(key: string, initialValue: T): [T, (value: T) => void] { const [stored, setStored] = useState<T>(() => { try { const item = window.localStorage.getItem(key); return item ? (JSON.parse(item) as T) : initialValue; } catch { return initialValue; } }); const setValue = (value: T) => { setStored(value); window.localStorage.setItem(key, JSON.stringify(value)); }; return [stored, setValue]; }`
         ),
       },
     ],
