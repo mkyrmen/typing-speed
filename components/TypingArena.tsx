@@ -282,9 +282,9 @@ export default function TypingArena() {
                 style={{ visibility: "hidden" }}
               >
                 {words.map((w, wi) => (
-                  <div key={wi} className="m-word flex whitespace-nowrap">
+                  <div key={wi} className="m-word flex whitespace-nowrap items-baseline">
                     {w.chars.map((ch, ci) => (
-                      <span key={ci} className="m-char" data-char={ch}>{ch === " " ? "\u00A0" : ch}</span>
+                      <span key={ci} className="m-char relative leading-none" data-char={ch}>{ch === " " ? "\u00A0" : ch}</span>
                     ))}
                   </div>
                 ))}
@@ -299,12 +299,13 @@ export default function TypingArena() {
                 {/* Caret */}
                 {targetText.length > 0 && (
                   <div
-                    className={`absolute w-[3px] h-7 bg-[color:var(--caret)] z-20 ${status === "idle" ? "animate-pulse" : ""}`}
+                    className={`absolute w-[3px] bg-[color:var(--caret)] z-20 ${status === "idle" ? "animate-pulse" : ""}`}
                     style={{
+                      height: "1em",
                       top: caretPos.top,
                       left: caretPos.left,
                       boxShadow: "0 0 12px var(--caret)",
-                      transition: "all 75ms cubic-bezier(0.175, 0.885, 0.32, 1.275)",
+                      transition: "left 75ms cubic-bezier(0.175, 0.885, 0.32, 1.275)",
                     }}
                   />
                 )}
@@ -329,7 +330,7 @@ export default function TypingArena() {
                           return (
                             <div 
                               key={word.startIndex} 
-                              className={`flex whitespace-nowrap transition-all duration-200 ${isWordActive ? "scale-[1.02] drop-shadow-[0_0_12px_rgba(255,255,255,0.15)]" : "scale-100"}`}
+                              className={`flex whitespace-nowrap items-baseline transition-all duration-200 ${isWordActive ? "scale-[1.02] drop-shadow-[0_0_12px_rgba(255,255,255,0.15)]" : "scale-100"}`}
                             >
                               {word.chars.map((ch, ci) => {
                                 const globalIndex = word.startIndex + ci;
@@ -343,7 +344,7 @@ export default function TypingArena() {
                                   : "";
 
                                 return (
-                                  <span key={globalIndex} className={`char-span ${colorClass} ${activeUnderline} transition-colors duration-150`}>
+                                  <span key={globalIndex} className={`char-span relative leading-none ${colorClass} ${activeUnderline} transition-colors duration-150`}>
                                     {ch === " " ? "\u00A0" : ch}
                                   </span>
                                 );
