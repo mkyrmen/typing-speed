@@ -329,17 +329,21 @@ export default function TypingArena() {
                           return (
                             <div 
                               key={word.startIndex} 
-                              className={`flex whitespace-nowrap transition-all duration-200 ${isWordActive ? "scale-[1.02] drop-shadow-[0_0_12px_rgba(255,255,255,0.15)] underline decoration-[color:var(--caret)]/50 decoration-2 underline-offset-8" : "scale-100"}`}
+                              className={`flex whitespace-nowrap transition-all duration-200 ${isWordActive ? "scale-[1.02] drop-shadow-[0_0_12px_rgba(255,255,255,0.15)]" : "scale-100"}`}
                             >
                               {word.chars.map((ch, ci) => {
                                 const globalIndex = word.startIndex + ci;
                                 let colorClass = "text-gray-200";
                                 if (globalIndex < userInput.length) {
-                                  colorClass = userInput[globalIndex] === ch ? "text-green-500 font-bold" : "text-red-500 bg-red-500/20 underline decoration-red-500 decoration-2 font-bold";
+                                  colorClass = userInput[globalIndex] === ch ? "text-green-500 font-bold" : "text-red-500 bg-red-500/20 underline decoration-red-500 decoration-2 underline-offset-[6px] font-bold rounded-[2px]";
                                 }
 
+                                const activeUnderline = (isWordActive && ch !== " " && !colorClass.includes("underline")) 
+                                  ? "underline decoration-[color:var(--caret)]/60 decoration-2 underline-offset-[6px]" 
+                                  : "";
+
                                 return (
-                                  <span key={globalIndex} className={`char-span ${colorClass} transition-colors duration-150`}>
+                                  <span key={globalIndex} className={`char-span ${colorClass} ${activeUnderline} transition-colors duration-150`}>
                                     {ch === " " ? "\u00A0" : ch}
                                   </span>
                                 );
