@@ -25,7 +25,7 @@ export default function Home() {
       </h1>
       
       {view === "menu" ? (
-        <StorySelector onSelect={(text, title) => setStory(text, title)} />
+        <StorySelector onSelect={(text: string, title: string) => setStory(text, title)} />
       ) : (
         <TypingArena />
       )}

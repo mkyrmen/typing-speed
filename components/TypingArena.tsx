@@ -217,7 +217,7 @@ export default function TypingArena() {
   const words = useMemo(() => buildWords(targetText), [targetText]);
 
   return (
-    <div className="w-full min-h-screen flex flex-col items-center justify-center p-8 bg-[var(--background)] text-[color:var(--foreground)] selection:bg-[color:var(--caret)]/25">
+    <div className="w-full min-h-screen flex flex-col items-center pt-32 pb-16 px-8 bg-[var(--background)] text-[color:var(--foreground)] selection:bg-[color:var(--caret)]/25">
       <AudioPreload />
       <StatsBar />
 
@@ -237,7 +237,7 @@ export default function TypingArena() {
         <ThemeToggle />
       </div>
 
-      <div className="w-[70%] max-w-[70vw] flex flex-col gap-8">
+      <div className="w-[75%] max-w-[75vw] flex flex-col gap-8 p-10 rounded-3xl backdrop-blur-sm bg-[color:var(--foreground)]/5 border border-[color:var(--foreground)]/10 shadow-2xl relative">
         <div className="flex flex-col items-center w-full gap-4">
           <div className="flex items-center justify-between w-full">
             <TimerSelector />
@@ -250,6 +250,17 @@ export default function TypingArena() {
             <TestComplete />
           ) : (
             <div className={`relative w-full cursor-text ${shake ? "animate-shake" : ""}`} onClick={handleClick}>
+              
+              <div 
+                className={`absolute left-0 right-0 flex flex-col items-center justify-center pointer-events-none transition-opacity duration-700 z-0 ${
+                  userInput.length > 0 ? "opacity-0" : "opacity-100"
+                }`}
+                style={{ top: "35%" }}
+              >
+                <p className="text-xl font-medium text-gray-400 mb-3 drop-shadow-md">Start typing to begin</p>
+                <p className="text-xs font-semibold tracking-wider text-gray-500 uppercase border border-gray-500/30 px-2 py-1 rounded">Press ESC to exit</p>
+              </div>
+
               <input
                 ref={inputRef}
                 type="text"
@@ -260,6 +271,7 @@ export default function TypingArena() {
                 autoFocus
                 autoComplete="off"
                 spellCheck="false"
+                aria-label="Typing input field"
               />
 
               {/* ── MEASURE PASS ── */}
@@ -317,13 +329,13 @@ export default function TypingArena() {
                           return (
                             <div 
                               key={word.startIndex} 
-                              className={`flex whitespace-nowrap transition-all duration-200 ${isWordActive ? "scale-[1.03] contrast-200 drop-shadow-[0_0_8px_var(--caret)]/10" : "scale-100"}`}
+                              className={`flex whitespace-nowrap transition-all duration-200 ${isWordActive ? "scale-[1.02] drop-shadow-[0_0_12px_rgba(255,255,255,0.15)] underline decoration-[color:var(--caret)]/50 decoration-2 underline-offset-8" : "scale-100"}`}
                             >
                               {word.chars.map((ch, ci) => {
                                 const globalIndex = word.startIndex + ci;
-                                let colorClass = "text-untyped";
+                                let colorClass = "text-gray-200";
                                 if (globalIndex < userInput.length) {
-                                  colorClass = userInput[globalIndex] === ch ? "text-correct" : "text-wrong underline";
+                                  colorClass = userInput[globalIndex] === ch ? "text-green-500 font-bold" : "text-red-500 bg-red-500/20 underline decoration-red-500 decoration-2 font-bold";
                                 }
 
                                 return (
