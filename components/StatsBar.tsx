@@ -47,8 +47,8 @@ export default function StatsBar() {
   const timeFlash = useFlashOnChange(timeLeft);
 
   return (
-    <div className="fixed top-6 left-1/2 z-50 -translate-x-1/2" aria-label="Typing Statistics">
-      <div className="flex items-center gap-6 rounded-full border border-[color:var(--foreground)]/12 bg-[color:var(--foreground)]/6 px-5 py-2 backdrop-blur">
+    <div className="fixed top-20 md:top-6 left-1/2 z-50 -translate-x-1/2 w-[90%] max-w-fit" aria-label="Typing Statistics">
+      <div className="flex justify-center items-center gap-3 sm:gap-6 rounded-full border border-[color:var(--foreground)]/12 bg-[color:var(--foreground)]/6 px-4 py-2 sm:px-5 backdrop-blur shadow-sm">
         <Stat label="WPM" value={wpm} flash={wpmFlash} icon="⚡" />
         <div className="h-4 w-px bg-[color:var(--foreground)]/12" />
         <Stat label="ACC" value={`${Math.round(accuracy)}%`} flash={accFlash} icon="🎯" />

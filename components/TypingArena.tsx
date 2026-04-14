@@ -217,11 +217,11 @@ export default function TypingArena() {
   const words = useMemo(() => buildWords(targetText), [targetText]);
 
   return (
-    <div className="w-full min-h-screen flex flex-col items-center pt-32 pb-16 px-8 bg-[var(--background)] text-[color:var(--foreground)] selection:bg-[color:var(--caret)]/25">
+    <div className="w-full min-h-screen flex flex-col items-center pt-24 md:pt-32 pb-16 px-4 md:px-8 bg-[var(--background)] text-[color:var(--foreground)] selection:bg-[color:var(--caret)]/25">
       <AudioPreload />
       <StatsBar />
 
-      <div className="fixed top-6 left-6 z-50">
+      <div className="fixed top-4 left-4 md:top-6 md:left-6 z-50">
         <button
           onClick={handleBackClick}
           className="inline-flex items-center gap-2 rounded-full border border-[color:var(--foreground)]/12 bg-[color:var(--foreground)]/6 px-3 py-2 text-xs font-medium text-[color:var(--foreground)]/70 hover:text-[color:var(--foreground)] transition backdrop-blur"
@@ -232,14 +232,14 @@ export default function TypingArena() {
         </button>
       </div>
 
-      <div className="fixed top-6 right-6 z-50 flex items-center gap-2">
+      <div className="fixed top-4 right-4 md:top-6 md:right-6 z-50 flex items-center gap-2">
         <SoundToggle />
         <ThemeToggle />
       </div>
 
-      <div className="w-[75%] max-w-[75vw] flex flex-col gap-8 p-10 rounded-3xl backdrop-blur-sm bg-[color:var(--foreground)]/5 border border-[color:var(--foreground)]/10 shadow-2xl relative">
+      <div className="w-[95%] sm:w-[90%] md:w-[75%] max-w-[95vw] md:max-w-[75vw] flex flex-col gap-6 md:gap-8 p-4 sm:p-6 md:p-10 rounded-3xl backdrop-blur-sm bg-[color:var(--foreground)]/5 border border-[color:var(--foreground)]/10 shadow-2xl relative">
         <div className="flex flex-col items-center w-full gap-4">
-          <div className="flex items-center justify-between w-full">
+          <div className="flex flex-col md:flex-row items-center justify-between w-full gap-4 md:gap-0">
             <TimerSelector />
             <GenreSelector />
           </div>
@@ -278,7 +278,7 @@ export default function TypingArena() {
               <div 
                 ref={measureRef} 
                 aria-hidden="true" 
-                className="absolute top-0 left-0 w-full text-3xl font-mono leading-relaxed tracking-tight flex flex-wrap opacity-0 pointer-events-none"
+                className="absolute top-0 left-0 w-full text-xl sm:text-2xl md:text-3xl font-mono leading-relaxed tracking-tight flex flex-wrap opacity-0 pointer-events-none"
                 style={{ visibility: "hidden" }}
               >
                 {words.map((w, wi) => (
@@ -293,7 +293,7 @@ export default function TypingArena() {
               {/* ── VISIBLE WATERFALL ── */}
               <div
                 ref={visibleRef}
-                className="relative w-full text-3xl font-mono leading-relaxed tracking-tight overflow-hidden flex flex-col items-center"
+                className="relative w-full text-xl sm:text-2xl md:text-3xl font-mono leading-relaxed tracking-tight overflow-hidden flex flex-col items-center"
                 style={{ height: `calc(${VISIBLE_LINES} * 1em * 1.625)` }} /* line-height 1.625 (relaxed) */
               >
                 {/* Caret */}

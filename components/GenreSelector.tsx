@@ -8,7 +8,7 @@ export default function GenreSelector() {
   const setGenre = useTypingStore((s) => s.setGenre);
 
   return (
-    <div className="flex items-center gap-2" role="group" aria-label="Select genre">
+    <div className="flex flex-wrap items-center justify-center gap-2" role="group" aria-label="Select genre">
       {GENRES.map((g) => {
         const isActive = genre === g.name;
         return (
@@ -18,7 +18,7 @@ export default function GenreSelector() {
             onClick={() => setGenre(g.name as GenreName)}
             aria-pressed={isActive}
             className={[
-              "px-3 py-1 rounded-full text-xs font-medium tracking-wide border transition-all duration-200",
+              "px-2 sm:px-3 py-1 rounded-full text-[10px] sm:text-xs font-medium tracking-wide border transition-all duration-200",
               isActive
                 ? "border-[color:var(--caret)] text-[color:var(--caret)] bg-[color:var(--caret)]/10"
                 : "border-[color:var(--foreground)]/15 text-[color:var(--foreground)]/40 hover:text-[color:var(--foreground)]/70 hover:border-[color:var(--foreground)]/30 bg-transparent",

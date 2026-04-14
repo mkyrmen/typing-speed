@@ -38,15 +38,15 @@ export default function TestComplete() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center p-12 rounded-2xl border border-[color:var(--foreground)]/12 bg-[color:var(--foreground)]/6 backdrop-blur-sm animate-in fade-in zoom-in duration-500">
-      <div className="flex items-center gap-3 mb-8">
-        <CheckCircle2 className="h-6 w-6 text-[color:var(--caret)]" />
-        <h2 className="text-2xl font-semibold tracking-tight">Test Complete</h2>
+    <div className="flex flex-col items-center justify-center p-6 md:p-12 w-full max-w-lg mx-auto rounded-2xl border border-[color:var(--foreground)]/12 bg-[color:var(--foreground)]/6 backdrop-blur-sm animate-in fade-in zoom-in duration-500">
+      <div className="flex items-center gap-2 md:gap-3 mb-6 md:mb-8 text-center">
+        <CheckCircle2 className="h-5 w-5 md:h-6 md:w-6 text-[color:var(--caret)]" />
+        <h2 className="text-xl md:text-2xl font-semibold tracking-tight">Test Complete</h2>
       </div>
 
-      <div className="mb-10 text-center">
-        <div className="text-6xl font-semibold tabular-nums text-[color:var(--caret)]">{rounded.wpm}</div>
-        <div className="mt-2 text-sm opacity-70 tabular-nums">
+      <div className="mb-8 md:mb-10 text-center">
+        <div className="text-5xl md:text-6xl font-semibold tabular-nums text-[color:var(--caret)]">{rounded.wpm}</div>
+        <div className="mt-2 text-xs md:text-sm opacity-70 tabular-nums">
           {rounded.accuracy}% accuracy · {storyTitle ?? "Unknown story"}
         </div>
       </div>
