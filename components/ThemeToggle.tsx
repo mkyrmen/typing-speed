@@ -17,7 +17,7 @@ export default function ThemeToggle() {
   return (
     <div className="flex items-center gap-2">
       <Paintbrush className="h-4 w-4 opacity-60" />
-      <div className="flex items-center rounded-full border border-[color:var(--foreground)]/12 bg-[color:var(--foreground)]/6 p-1 backdrop-blur" role="radiogroup" aria-label="Theme selection">
+      <div className="flex items-center rounded-full border border-[color:var(--foreground)]/12 bg-[color:var(--foreground)]/6 p-1 backdrop-blur overflow-x-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] max-w-[55vw] md:max-w-none snap-x" role="radiogroup" aria-label="Theme selection">
         {THEMES.map((t) => {
           const active = t.id === theme;
           return (

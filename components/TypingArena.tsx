@@ -232,7 +232,7 @@ export default function TypingArena() {
         </button>
       </div>
 
-      <div className="fixed top-4 right-4 md:top-6 md:right-6 z-50 flex items-center gap-2">
+      <div className="fixed top-2 right-2 md:top-6 md:right-6 z-50 flex flex-col md:flex-row items-end md:items-center gap-2">
         <SoundToggle />
         <ThemeToggle />
       </div>
@@ -252,13 +252,15 @@ export default function TypingArena() {
             <div className={`relative w-full cursor-text ${shake ? "animate-shake" : ""}`} onClick={handleClick}>
               
               <div 
-                className={`absolute left-0 right-0 flex flex-col items-center justify-center pointer-events-none transition-opacity duration-700 z-0 ${
+                className={`absolute left-0 right-0 flex flex-col items-center justify-center pointer-events-none transition-opacity duration-700 z-30 ${
                   userInput.length > 0 ? "opacity-0" : "opacity-100"
                 }`}
                 style={{ top: "35%" }}
               >
-                <p className="text-xl font-medium text-gray-400 mb-3 drop-shadow-md">Start typing to begin</p>
-                <p className="text-xs font-semibold tracking-wider text-gray-500 uppercase border border-gray-500/30 px-2 py-1 rounded">Press ESC to exit</p>
+                <div className="bg-[var(--background)]/95 backdrop-blur px-6 py-4 rounded-2xl shadow-xl flex flex-col items-center border border-[color:var(--foreground)]/10">
+                  <p className="text-base sm:text-xl font-medium text-gray-400 mb-3 drop-shadow-md">Start typing to begin</p>
+                  <p className="text-[10px] sm:text-xs font-semibold tracking-wider text-gray-500 uppercase border border-gray-500/30 px-2 py-1 rounded">Press ESC to exit</p>
+                </div>
               </div>
 
               <input
@@ -278,7 +280,7 @@ export default function TypingArena() {
               <div 
                 ref={measureRef} 
                 aria-hidden="true" 
-                className="absolute top-0 left-0 w-full text-xl sm:text-2xl md:text-3xl font-mono leading-relaxed tracking-tight flex flex-wrap opacity-0 pointer-events-none"
+                className="absolute top-0 left-0 w-full text-lg sm:text-xl md:text-2xl font-mono leading-relaxed tracking-tight flex flex-wrap opacity-0 pointer-events-none"
                 style={{ visibility: "hidden" }}
               >
                 {words.map((w, wi) => (
@@ -293,7 +295,7 @@ export default function TypingArena() {
               {/* ── VISIBLE WATERFALL ── */}
               <div
                 ref={visibleRef}
-                className="relative w-full text-xl sm:text-2xl md:text-3xl font-mono leading-relaxed tracking-tight overflow-hidden flex flex-col items-center"
+                className="relative w-full text-lg sm:text-xl md:text-2xl font-mono leading-relaxed tracking-tight overflow-hidden flex flex-col items-center"
                 style={{ height: `calc(${VISIBLE_LINES} * 1em * 1.625)` }} /* line-height 1.625 (relaxed) */
               >
                 {/* Caret */}

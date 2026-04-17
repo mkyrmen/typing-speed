@@ -39,10 +39,10 @@ export default function StorySelector({ onSelect }: StorySelectorProps) {
         <div className="w-full flex items-center justify-between">
           <button
             onClick={() => setSelectedGenre(null)}
-            className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors"
+            className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors py-3 px-4 -ml-4 bg-white/5 md:bg-transparent rounded-xl md:rounded-none active:bg-white/10"
           >
             <ArrowLeft className="w-5 h-5" />
-            <span>Back to Genres</span>
+            <span className="font-medium">Back to Genres</span>
           </button>
           <div className="flex items-center gap-3">
             <div className={`p-2 rounded-lg bg-white/5 border border-white/10 ${getAccentColor(selectedGenre).split(" ")[2]}`}>
@@ -83,27 +83,27 @@ export default function StorySelector({ onSelect }: StorySelectorProps) {
         <p className="text-gray-400 text-lg">Choose a genre to explore immersive stories</p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-8 w-full px-4 md:px-0">
         {GENRES.map((g) => (
           <button
             key={g.name}
             onClick={() => setSelectedGenre(g.name)}
-            className={`group relative p-8 rounded-2xl border bg-gradient-to-br ${getAccentColor(g.name)} transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.5)] flex flex-col items-center gap-6 overflow-hidden`}
+            className={`group relative p-4 sm:p-8 rounded-2xl border bg-gradient-to-br ${getAccentColor(g.name)} transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.5)] flex flex-row md:flex-col items-center md:items-center text-left md:text-center gap-4 sm:gap-6 overflow-hidden`}
           >
             <div className="absolute top-0 right-0 -mr-8 -mt-8 w-32 h-32 bg-white/5 rounded-full blur-3xl transition-transform duration-700 group-hover:scale-150" />
             
-            <div className="p-4 rounded-xl bg-white/5 border border-white/10 group-hover:bg-white/10 transition-colors duration-300">
+            <div className="p-3 sm:p-4 rounded-xl bg-white/5 border border-white/10 group-hover:bg-white/10 transition-colors duration-300 shrink-0">
               {getIcon(g.name)}
             </div>
             
-            <div className="text-center">
-              <h3 className="text-2xl font-bold mb-2 group-hover:scale-110 transition-transform duration-300">{g.label}</h3>
-              <p className="text-sm opacity-60 leading-relaxed font-medium">
+            <div className="flex-1">
+              <h3 className="text-xl sm:text-2xl font-bold mb-1 sm:mb-2 group-hover:scale-105 md:group-hover:scale-110 transition-transform duration-300 origin-left md:origin-center">{g.label}</h3>
+              <p className="text-xs sm:text-sm opacity-60 leading-relaxed font-medium">
                 {g.stories.length} immersive stories
               </p>
             </div>
 
-            <div className="mt-4 px-6 py-2 rounded-full bg-white/10 text-xs font-bold uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-4 group-hover:translate-y-0 border border-white/10">
+            <div className="hidden md:block mt-4 px-6 py-2 rounded-full bg-white/10 text-xs font-bold uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-4 group-hover:translate-y-0 border border-white/10">
               Browse Genre
             </div>
           </button>
