@@ -48,7 +48,7 @@ export default function StatsBar() {
 
   return (
     <div className="fixed top-20 md:top-6 left-1/2 z-50 -translate-x-1/2 w-[95%] sm:w-[90%] max-w-fit" aria-label="Typing Statistics">
-      <div className="grid grid-cols-3 divide-x divide-[color:var(--foreground)]/12 items-center rounded-full border border-[color:var(--foreground)]/12 bg-[color:var(--foreground)]/6 px-2 py-1.5 sm:px-5 sm:py-2 backdrop-blur shadow-sm [&>div]:justify-center">
+      <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-[color:var(--foreground)]/12 items-center rounded-2xl md:rounded-full border border-[color:var(--foreground)]/12 bg-[color:var(--foreground)]/6 px-4 py-2 sm:px-5 sm:py-2 backdrop-blur shadow-sm [&>div]:justify-center gap-1 md:gap-0">
         <Stat label="WPM" value={wpm} flash={wpmFlash} icon="⚡" />
         <Stat label="ACC" value={`${Math.round(accuracy)}%`} flash={accFlash} icon="🎯" />
         <Stat label="TIME" value={`${timeLeft}s`} flash={timeFlash} icon="⏱" />

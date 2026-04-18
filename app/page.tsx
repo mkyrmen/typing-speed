@@ -16,17 +16,17 @@ export default function Home() {
       <AudioPreload />
 
       {view === "menu" ? (
-        <div className="w-full flex flex-col items-center flex-1 justify-center relative mt-16 md:mt-0">
-          <div className="absolute top-4 md:top-8 w-full flex flex-col md:flex-row items-center md:items-start justify-between max-w-5xl gap-4 px-4 z-50">
+        <div className="w-full flex flex-col items-center flex-1 justify-start pt-4 md:pt-8 relative">
+          <div className="w-full flex flex-wrap items-center justify-between max-w-5xl gap-4 px-4 min-h-[80px] z-50">
             <h1 className="text-4xl md:text-5xl font-semibold tracking-tight">
               <span className="text-[color:var(--caret)]">Typing</span>App
             </h1>
-            <div className="flex items-center gap-2 max-w-[90vw] md:max-w-none">
+            <div className="flex items-center gap-2">
               <SoundToggle />
               <ThemeToggle />
             </div>
           </div>
-          <div className="mt-24 md:mt-20 w-full flex justify-center">
+          <div className="mt-8 md:mt-12 w-full flex flex-1 items-center justify-center">
             <StorySelector onSelect={(text: string, title: string) => setStory(text, title)} />
           </div>
         </div>

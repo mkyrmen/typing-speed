@@ -252,14 +252,13 @@ export default function TypingArena() {
             <div className={`relative w-full cursor-text ${shake ? "animate-shake" : ""}`} onClick={handleClick}>
               
               <div 
-                className={`absolute left-0 right-0 flex flex-col items-center justify-center pointer-events-none transition-opacity duration-700 z-30 ${
+                className={`absolute inset-0 flex flex-col items-center justify-center pointer-events-none transition-opacity duration-700 z-[60] bg-[var(--background)]/95 backdrop-blur-sm ${
                   userInput.length > 0 ? "opacity-0" : "opacity-100"
                 }`}
-                style={{ top: "35%" }}
               >
-                <div className="bg-[var(--background)]/95 backdrop-blur px-6 py-4 rounded-2xl shadow-xl flex flex-col items-center border border-[color:var(--foreground)]/10">
-                  <p className="text-base sm:text-xl font-medium text-gray-400 mb-3 drop-shadow-md">Start typing to begin</p>
-                  <p className="text-[10px] sm:text-xs font-semibold tracking-wider text-gray-500 uppercase border border-gray-500/30 px-2 py-1 rounded">Press ESC to exit</p>
+                <div className="px-6 py-4 rounded-2xl shadow-xl flex flex-col items-center border border-[color:var(--foreground)]/10 bg-[color:var(--foreground)]/5 backdrop-blur">
+                  <p className="text-base sm:text-xl font-medium text-[color:var(--foreground)]/80 mb-3 drop-shadow-md">Start typing to begin</p>
+                  <p className="text-[10px] sm:text-xs font-semibold tracking-wider text-[color:var(--foreground)]/50 uppercase border border-[color:var(--foreground)]/20 px-2 py-1 rounded">Press ESC to exit</p>
                 </div>
               </div>
 
@@ -276,7 +275,6 @@ export default function TypingArena() {
                 aria-label="Typing input field"
               />
 
-              {/* ── MEASURE PASS ── */}
               <div 
                 ref={measureRef} 
                 aria-hidden="true" 
@@ -286,7 +284,7 @@ export default function TypingArena() {
                 {words.map((w, wi) => (
                   <div key={wi} className="m-word flex whitespace-nowrap items-baseline">
                     {w.chars.map((ch, ci) => (
-                      <span key={ci} className="m-char relative leading-none" data-char={ch}>{ch === " " ? "\u00A0" : ch}</span>
+                      <span key={ci} className="m-char relative leading-[1.5]" data-char={ch}>{ch === " " ? "\u00A0" : ch}</span>
                     ))}
                   </div>
                 ))}
@@ -298,18 +296,22 @@ export default function TypingArena() {
                 className="relative w-full text-lg sm:text-xl md:text-2xl font-mono leading-relaxed tracking-tight overflow-hidden flex flex-col items-center"
                 style={{ height: `calc(${VISIBLE_LINES} * 1em * 1.625)` }} /* line-height 1.625 (relaxed) */
               >
-                {/* Caret */}
+                {/* Caret Wrapper */}
                 {targetText.length > 0 && (
                   <div
-                    className={`absolute w-[3px] bg-[color:var(--caret)] z-20 ${status === "idle" ? "animate-pulse" : ""}`}
+                    className={`absolute z-20 flex items-end ${status === "idle" ? "animate-pulse" : ""}`}
                     style={{
-                      height: "1em",
+                      height: "1.5em",
                       top: caretPos.top,
                       left: caretPos.left,
-                      boxShadow: "0 0 12px var(--caret)",
                       transition: "left 75ms cubic-bezier(0.175, 0.885, 0.32, 1.275)",
                     }}
-                  />
+                  >
+                    <div 
+                      className="w-[3px] bg-[color:var(--caret)] relative bottom-[0.1em]" 
+                      style={{ height: "1.1em", boxShadow: "0 0 12px var(--caret)" }} 
+                    />
+                  </div>
                 )}
 
                 {/* VISIBLE LINES rendering */}
@@ -324,7 +326,7 @@ export default function TypingArena() {
                     return (
                       <div 
                         key={globalLineIdx} 
-                        className={`w-full flex flex-wrap justify-center gap-x-0 transition-opacity duration-300 ${opacity}`}
+                        className={`w-full flex flex-wrap justify-center items-baseline gap-x-0 transition-opacity duration-300 ${opacity}`}
                       >
                         {line.words.map((word, wi) => {
                           const isWordActive = userInput.length >= word.startIndex && userInput.length < word.startIndex + word.chars.length;
@@ -346,7 +348,7 @@ export default function TypingArena() {
                                   : "";
 
                                 return (
-                                  <span key={globalIndex} className={`char-span relative leading-none ${colorClass} ${activeUnderline} transition-colors duration-150`}>
+                                  <span key={globalIndex} className={`char-span relative leading-[1.5] ${colorClass} ${activeUnderline} transition-colors duration-150`}>
                                     {ch === " " ? "\u00A0" : ch}
                                   </span>
                                 );
