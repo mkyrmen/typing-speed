@@ -221,20 +221,20 @@ export default function TypingArena() {
       <AudioPreload />
       <StatsBar />
 
-      <div className="fixed top-4 left-4 md:top-6 md:left-6 z-50">
+      <div className="absolute top-0 left-0 w-full flex flex-wrap items-center justify-between gap-4 px-4 py-4 md:px-6 md:py-6 z-50 min-h-[80px]">
         <button
           onClick={handleBackClick}
           className="inline-flex items-center gap-2 rounded-full border border-[color:var(--foreground)]/12 bg-[color:var(--foreground)]/6 px-3 py-2 text-xs font-medium text-[color:var(--foreground)]/70 hover:text-[color:var(--foreground)] transition backdrop-blur"
         >
           <ArrowLeft className="h-4 w-4" />
           <span>Back</span>
-          <span className="text-[10px] opacity-60 ml-1 border border-current/30 px-1.5 py-0.5 rounded">Esc</span>
+          <span className="text-[10px] opacity-60 ml-1 border border-current/30 px-1.5 py-0.5 rounded hidden sm:inline-block">Esc</span>
         </button>
-      </div>
 
-      <div className="fixed top-2 right-2 md:top-6 md:right-6 z-50 flex flex-col md:flex-row items-end md:items-center gap-2">
-        <SoundToggle />
-        <ThemeToggle />
+        <div className="flex items-center gap-2">
+          <SoundToggle />
+          <ThemeToggle />
+        </div>
       </div>
 
       <div className="w-[95%] sm:w-[90%] md:w-[75%] max-w-[95vw] md:max-w-[75vw] flex flex-col gap-6 md:gap-8 p-4 sm:p-6 md:p-10 rounded-3xl backdrop-blur-sm bg-[color:var(--foreground)]/5 border border-[color:var(--foreground)]/10 shadow-2xl relative">
